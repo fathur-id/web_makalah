@@ -1,0 +1,257 @@
+/* 1. RESET DAN FONT DASAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Skema Warna Profesional */
+    --color-primary: #1e3a5f; /* Biru Navy Gelap (Header, Judul Utama) */
+    --color-secondary: #3b5998; /* Biru Sedang (Aksen) */
+    --color-text: #333333; /* Abu-abu Gelap (Teks Utama) */
+    --color-light-bg: #f5f7fa; /* Abu-abu Sangat Muda (Latar Belakang Luar) */
+    --color-paper: #ffffff; /* Putih Bersih (Latar Belakang Makalah) */
+    --color-accent: #c49a6c; /* Emas/Cream (Aksen Garis/Hover) */
+
+    /* Font stack */
+    --font-heading: 'Merriweather', serif; /* Font Serif untuk Judul */
+    --font-body: 'Open Sans', sans-serif; /* Font Sans-serif bersih untuk Body */
+}
+
+body {
+    background-color: var(--color-light-bg); 
+    font-family: var(--font-body); 
+    line-height: 1.7; /* Tingkatkan line height untuk keterbacaan */
+    color: var(--color-text); 
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-rendering: optimizeLegibility; /* Optimasi render font */
+}
+
+/* 2. STYLING UNTUK TRANSISI HALAMAN */
+.page-section {
+    width: 100%;
+    min-height: 100vh; 
+    display: none; 
+    transition: opacity 0.5s ease-in-out;
+}
+
+.active-page {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    opacity: 1;
+}
+
+.hidden-page {
+    display: none; 
+    opacity: 0;
+}
+
+/* =============================== */
+/* 3. HALAMAN COVER (index.html #cover-page) */
+/* =============================== */
+#cover-page {
+    background-color: var(--color-light-bg);
+}
+
+.cover-content {
+    background-color: var(--color-paper);
+    padding: 80px 60px; /* Padding lebih besar */
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+    max-width: 700px;
+    width: 90%;
+    text-align: center;
+}
+
+.project-title {
+    color: var(--color-secondary);
+    font-size: 1.2em;
+    font-weight: 400;
+    letter-spacing: 2px; /* Jarak antar huruf */
+    margin-bottom: 5px;
+}
+
+.makalah-title-cover {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 3em; /* Judul sangat menonjol */
+    line-height: 1.2;
+    margin-bottom: 60px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--color-accent); /* Garis aksen emas */
+}
+
+.group-info {
+    margin: 40px auto;
+    text-align: left;
+    max-width: 500px;
+    padding: 15px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.group-info h3 {
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.group-info ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 1em;
+}
+
+.group-info li {
+    padding: 5px 0;
+}
+
+.institution-info p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Tombol Next */
+.next-button {
+    background-color: var(--color-secondary); 
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    border-radius: 50px; /* Tombol berbentuk pil */
+    cursor: pointer;
+    margin-top: 40px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.next-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* =============================== */
+/* 4. HALAMAN MAKALAH (index.html #makalah-content) */
+/* =============================== */
+
+/* Wadah Utama Makalah (Efek Kertas) */
+.main-container {
+    width: 100%;
+    max-width: 960px; /* Lebar sedikit lebih besar untuk konten */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
+    margin: 20px 0;
+}
+
+.makalah-page {
+    background-color: var(--color-paper); 
+    padding: 60px 70px; /* Margin lebih lebar */
+    min-height: 100vh;
+}
+
+/* Header dan Footer di Halaman Makalah */
+.header-container, .footer-container {
+    width: 100%;
+    max-width: 960px;
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Tombol Back */
+.back-button {
+    background-color: var(--color-primary); 
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border-radius: 4px;
+    cursor: pointer;
+    position: fixed; 
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+.back-button:hover {
+    background-color: #1a2e47;
+}
+
+/* TYPOGRAPHY MAKALAH */
+.makalah-title {
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.makalah-meta {
+    font-size: 0.95em;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.makalah-section {
+    margin-top: 40px; /* Jarak antar bab lebih lega */
+}
+
+.makalah-section h2 {
+    font-family: var(--font-heading);
+    font-size: 1.6em;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--color-accent); /* Garis aksen emas */
+    padding-bottom: 5px;
+    text-transform: uppercase; /* Judul bab dalam huruf besar */
+}
+
+.makalah-section h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2em;
+    color: var(--color-secondary);
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.makalah-section p {
+    text-align: justify; 
+    margin-bottom: 1.5em; /* Jarak antar paragraf lebih besar */
+    font-size: 1.05em; /* Sedikit lebih besar untuk kenyamanan membaca */
+}
+
+/* Styling Daftar Pustaka/List */
+.makalah-section ul,
+.makalah-section ol {
+    margin-left: 30px;
+    margin-bottom: 1.5em;
+}
+
+/* 5. RESPONSIF */
+@media (max-width: 960px) {
+    .makalah-page {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cover-content {
+        padding: 40px 20px;
+    }
+    .makalah-title-cover {
+        font-size: 2em;
+    }
+    .makalah-page {
+        padding: 20px;
+    }
+    .makalah-section h2 {
+        font-size: 1.4em;
+    }
+}
