@@ -1,4 +1,4 @@
-/* 1. RESET DAN FONT DASAR */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,38 +6,43 @@
 }
 
 :root {
-    /* Skema Warna Profesional */
-    --color-primary: #1e3a5f; /* Biru Navy Gelap (Header, Judul Utama) */
-    --color-secondary: #3b5998; /* Biru Sedang (Aksen) */
-    --color-text: #333333; /* Abu-abu Gelap (Teks Utama) */
-    --color-light-bg: #f5f7fa; /* Abu-abu Sangat Muda (Latar Belakang Luar) */
-    --color-paper: #ffffff; /* Putih Bersih (Latar Belakang Makalah) */
-    --color-accent: #c49a6c; /* Emas/Cream (Aksen Garis/Hover) */
-
-    /* Font stack */
-    --font-heading: 'Merriweather', serif; /* Font Serif untuk Judul */
-    --font-body: 'Open Sans', sans-serif; /* Font Sans-serif bersih untuk Body */
+    
+    --color-primary: #1e3a5f; 
+    --color-secondary: #3b5998; 
+    --color-text: #333333; 
+    --color-light-bg: #ffffff; 
+    --color-paper: #ffffff; 
+    --color-accent: #c49a6c; 
+    --shadow-deep: 0 10px 30px rgba(0, 0, 0, 0.15); 
+    --font-heading: 'Merriweather', serif; 
+    --font-body: 'Open Sans', sans-serif; 
 }
 
 body {
+    /* LATAR BELAKANG BODY WARNA SOLID */
     background-color: var(--color-light-bg); 
+    
     font-family: var(--font-body); 
-    line-height: 1.7; /* Tingkatkan line height untuk keterbacaan */
+    line-height: 1.7; 
     color: var(--color-text); 
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center; 
-    text-rendering: optimizeLegibility; /* Optimasi render font */
+    text-rendering: optimizeLegibility; 
+    position: relative; 
+    min-height: 100vh; 
 }
+
 
 /* 2. STYLING UNTUK TRANSISI HALAMAN */
 .page-section {
     width: 100%;
     min-height: 100vh; 
     display: none; 
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 1s ease-in-out; 
+    padding: 20px 0; 
 }
 
 .active-page {
@@ -53,18 +58,28 @@ body {
     opacity: 0;
 }
 
+/* Animasi Fade-in untuk Konten Makalah */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#makalah-content.active-page .makalah-page { 
+     animation: fadeIn 1s ease-out both;
+}
+
 /* =============================== */
-/* 3. HALAMAN COVER (index.html #cover-page) */
+        /* 3. HALAMAN COVER */
 /* =============================== */
 #cover-page {
-    background-color: var(--color-light-bg);
+    background-color: var(--color-light-bg); 
 }
 
 .cover-content {
     background-color: var(--color-paper);
-    padding: 80px 60px; /* Padding lebih besar */
+    padding: 80px 60px; 
     border-radius: 8px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+    box-shadow: var(--shadow-deep); 
     max-width: 700px;
     width: 90%;
     text-align: center;
@@ -74,18 +89,18 @@ body {
     color: var(--color-secondary);
     font-size: 1.2em;
     font-weight: 400;
-    letter-spacing: 2px; /* Jarak antar huruf */
+    letter-spacing: 2px; 
     margin-bottom: 5px;
 }
 
 .makalah-title-cover {
     font-family: var(--font-heading);
     color: var(--color-primary);
-    font-size: 3em; /* Judul sangat menonjol */
+    font-size: 3em; 
     line-height: 1.2;
     margin-bottom: 60px;
     padding-bottom: 15px;
-    border-bottom: 3px solid var(--color-accent); /* Garis aksen emas */
+    border-bottom: 3px solid var(--color-accent); 
 }
 
 .group-info {
@@ -110,7 +125,16 @@ body {
 }
 
 .group-info li {
-    padding: 5px 0;
+    padding: 8px 0; 
+    transition: background-color 0.3s, transform 0.3s;
+    border-left: 3px solid transparent; 
+    cursor: default; 
+}
+
+.group-info li:hover {
+    background-color: #fcebeb; 
+    transform: translateX(5px); 
+    border-left: 3px solid var(--color-accent); 
 }
 
 .institution-info p {
@@ -125,7 +149,7 @@ body {
     border: none;
     padding: 12px 30px;
     font-size: 1.1em;
-    border-radius: 50px; /* Tombol berbentuk pil */
+    border-radius: 50px; 
     cursor: pointer;
     margin-top: 40px;
     transition: background-color 0.3s, transform 0.2s;
@@ -138,22 +162,55 @@ body {
 }
 
 /* =============================== */
-/* 4. HALAMAN MAKALAH (index.html #makalah-content) */
+/* 4. HALAMAN MAKALAH (#makalah-content) */
 /* =============================== */
 
 /* Wadah Utama Makalah (Efek Kertas) */
 .main-container {
     width: 100%;
-    max-width: 960px; /* Lebar sedikit lebih besar untuk konten */
+    max-width: 960px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
     margin: 20px 0;
 }
 
 .makalah-page {
     background-color: var(--color-paper); 
-    padding: 60px 70px; /* Margin lebih lebar */
+    padding: 60px 70px; 
     min-height: 100vh;
+    position: relative; 
 }
+
+/* KUNCI: WATERMARK DENGAN UKURAN BARU */
+.makalah-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://logobagus.com/wp-content/uploads/2024/01/logo_unp_kediri.jpg');
+    
+    /* PERUBAHAN: UKURAN LOGO DITINGKATKAN MENJADI 450px */
+    background-size: 450px; 
+    
+    background-repeat: no-repeat;
+    background-position: center center; 
+    
+    /* Opacity dipertahankan di 0.2 */
+    opacity: 0.2; 
+    
+    /* Filter Grayscale dipertahankan */
+    filter: grayscale(100%); 
+    
+    z-index: 1;
+}
+
+/* Mengatur agar konten makalah berada di atas watermark */
+.makalah-page * {
+    position: relative;
+    z-index: 2;
+}
+
 
 /* Header dan Footer di Halaman Makalah */
 .header-container, .footer-container {
@@ -177,6 +234,8 @@ body {
     left: 20px;
     z-index: 10;
     transition: background-color 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+    border: 1px solid rgba(255, 255, 255, 0.5); 
 }
 .back-button:hover {
     background-color: #1a2e47;
@@ -199,8 +258,19 @@ body {
     text-align: center;
 }
 
+/* Modifikasi Separator/Garis Pembeda */
+hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-accent), var(--color-secondary), var(--color-light-bg));
+    margin: 30px 0;
+    opacity: 0.7;
+    border-radius: 1.5px;
+}
+
+
 .makalah-section {
-    margin-top: 40px; /* Jarak antar bab lebih lega */
+    margin-top: 40px; 
 }
 
 .makalah-section h2 {
@@ -208,9 +278,9 @@ body {
     font-size: 1.6em;
     color: var(--color-primary);
     margin-bottom: 20px;
-    border-bottom: 2px solid var(--color-accent); /* Garis aksen emas */
+    border-bottom: 2px solid var(--color-accent); 
     padding-bottom: 5px;
-    text-transform: uppercase; /* Judul bab dalam huruf besar */
+    text-transform: uppercase; 
 }
 
 .makalah-section h3 {
@@ -223,8 +293,8 @@ body {
 
 .makalah-section p {
     text-align: justify; 
-    margin-bottom: 1.5em; /* Jarak antar paragraf lebih besar */
-    font-size: 1.05em; /* Sedikit lebih besar untuk kenyamanan membaca */
+    margin-bottom: 1.5em; 
+    font-size: 1.05em; 
 }
 
 /* Styling Daftar Pustaka/List */
@@ -232,6 +302,20 @@ body {
 .makalah-section ol {
     margin-left: 30px;
     margin-bottom: 1.5em;
+}
+
+.makalah-section ul li {
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.makalah-section ul li:hover {
+    color: var(--color-secondary); 
+}
+
+.makalah-section ul li i {
+    margin-right: 8px; 
+    color: var(--color-accent);
 }
 
 /* 5. RESPONSIF */
