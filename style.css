@@ -12,7 +12,7 @@
     --color-text: #333333; 
     
     /* LATAR BELAKANG LUAR GELAP (HAMPIR HITAM) */
-    --color-light-bg: #1a1a1a; 
+    --color-light-bg: #e8e8e8; 
     
     --color-paper: #ffffff; /* Latar Belakang Kertas Makalah Tetap Putih */
     --color-accent: #c49a6c; 
@@ -88,7 +88,7 @@ body {
 
 /* STYLING LOGO DI COVER */
 .cover-logo {
-    width: 200px; /* Ukuran yang ideal untuk logo di halaman cover */
+    width: 200px; 
     height: auto;
     margin: 30px auto 40px auto; 
     display: block;
@@ -191,11 +191,10 @@ body {
     position: relative; 
 }
 
-/* PENTING: MENGHILANGKAN SEMUA EFEK WATERMARK */
+/* MENGHILANGKAN SEMUA EFEK WATERMARK DARI MAKALAH */
 .makalah-page::before {
-    content: none; /* Menghapus pseudo-element watermark */
+    content: none; 
 }
-/* TIDAK ADA Z-INDEX UNTUK TEKS */
 
 /* Header dan Footer di Halaman Makalah */
 .header-container, .footer-container {
