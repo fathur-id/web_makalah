@@ -1,4 +1,4 @@
-
+/* 1. RESET DAN FONT DASAR */
 * {
     margin: 0;
     padding: 0;
@@ -6,22 +6,23 @@
 }
 
 :root {
-    
+    /* Skema Warna Profesional */
     --color-primary: #1e3a5f; 
     --color-secondary: #3b5998; 
     --color-text: #333333; 
-    --color-light-bg: #f0f0f0; 
-    --color-paper: #ffffff; 
+    
+    /* LATAR BELAKANG LUAR GELAP (HAMPIR HITAM) */
+    --color-light-bg: #dcdcdc; 
+    
+    --color-paper: #ffffff; /* Latar Belakang Kertas Makalah Tetap Putih */
     --color-accent: #c49a6c; 
-    --shadow-deep: 0 10px 30px rgba(0, 0, 0, 0.15); 
+    --shadow-deep: 0 10px 30px rgba(0, 0, 0, 0.5); 
     --font-heading: 'Merriweather', serif; 
     --font-body: 'Open Sans', sans-serif; 
 }
 
 body {
-    /* LATAR BELAKANG BODY WARNA SOLID */
     background-color: var(--color-light-bg); 
-    
     font-family: var(--font-body); 
     line-height: 1.7; 
     color: var(--color-text); 
@@ -41,7 +42,7 @@ body {
     width: 100%;
     min-height: 100vh; 
     display: none; 
-    transition: opacity 1s ease-in-out; 
+    transition: opacity 0.8s ease-in-out; 
     padding: 20px 0; 
 }
 
@@ -58,7 +59,6 @@ body {
     opacity: 0;
 }
 
-/* Animasi Fade-in untuk Konten Makalah */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -68,8 +68,9 @@ body {
      animation: fadeIn 1s ease-out both;
 }
 
+
 /* =============================== */
-        /* 3. HALAMAN COVER */
+/* 3. HALAMAN COVER (#cover-page) */
 /* =============================== */
 #cover-page {
     background-color: var(--color-light-bg); 
@@ -85,6 +86,16 @@ body {
     text-align: center;
 }
 
+/* STYLING LOGO DI COVER */
+.cover-logo {
+    width: 200px; /* Ukuran yang ideal untuk logo di halaman cover */
+    height: auto;
+    margin: 30px auto 40px auto; 
+    display: block;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 4px;
+}
+
 .project-title {
     color: var(--color-secondary);
     font-size: 1.2em;
@@ -98,7 +109,7 @@ body {
     color: var(--color-primary);
     font-size: 3em; 
     line-height: 1.2;
-    margin-bottom: 60px;
+    margin-bottom: 20px; 
     padding-bottom: 15px;
     border-bottom: 3px solid var(--color-accent); 
 }
@@ -180,37 +191,11 @@ body {
     position: relative; 
 }
 
-/* KUNCI: WATERMARK DENGAN UKURAN BARU */
+/* PENTING: MENGHILANGKAN SEMUA EFEK WATERMARK */
 .makalah-page::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://logobagus.com/wp-content/uploads/2024/01/logo_unp_kediri.jpg');
-    
-    /* PERUBAHAN: UKURAN LOGO DITINGKATKAN MENJADI 450px */
-    background-size: 450px; 
-    
-    background-repeat: no-repeat;
-    background-position: center center; 
-    
-    /* Opacity dipertahankan di 0.2 */
-    opacity: 0.2; 
-    
-    /* Filter Grayscale dipertahankan */
-    filter: grayscale(100%); 
-    
-    z-index: 1;
+    content: none; /* Menghapus pseudo-element watermark */
 }
-
-/* Mengatur agar konten makalah berada di atas watermark */
-.makalah-page * {
-    position: relative;
-    z-index: 2;
-}
-
+/* TIDAK ADA Z-INDEX UNTUK TEKS */
 
 /* Header dan Footer di Halaman Makalah */
 .header-container, .footer-container {
@@ -295,6 +280,7 @@ hr {
     text-align: justify; 
     margin-bottom: 1.5em; 
     font-size: 1.05em; 
+    color: var(--color-text); /* PASTIKAN TEKS MENGGUNAKAN WARNA PEKAT */
 }
 
 /* Styling Daftar Pustaka/List */
